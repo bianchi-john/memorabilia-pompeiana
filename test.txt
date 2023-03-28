@@ -1,3 +1,0 @@
-
-git config --global user.name "john-lenci-bianchi"
-git config --global user.email john.lenci.bianchi@gmail.com
