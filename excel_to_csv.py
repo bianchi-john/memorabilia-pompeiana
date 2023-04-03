@@ -409,10 +409,7 @@ def abbreviazioniTipologiche(fileIn, fileOut):
                 # Itero su ogni cella e aggiungi il contenuto alla lista
                 for cell in row:
                     cell_content.append(cell.value)
-
-                # Stampo il contenuto
-                # print (cell_content)
-
+                    
                 # Se c'è qualche valore nella riga allora:
                 if (cell_content[0]):
                     # Sostituisco il contenuto Null con la stringa 'Missing Value'
@@ -463,34 +460,34 @@ def execute():
 
 
 
-# crea una nuova finestra
+# Creo una nuova finestra
 window = tk.Tk()
 
-# aggiungi un titolo alla finestra
+# Titolo della finestra
 window.title("Memorabilia Pompeiana")
 
-# imposta le dimensioni della finestra
+# Dimensioni della finestra
 window.geometry("400x200")
 
-# aggiungi un'etichetta alla finestra
+# Etichetta alla finestra vuota per fare spazio (sono un programmatore scarso)
 label = tk.Label(window, text=" ")
 label.pack()
 
-# aggiungi un'etichetta alla finestra
+# Etichetta alla finestra
 label = tk.Label(window, text="Esporta Excel in csv")
 label.pack()
 
-# aggiungi un'etichetta alla finestra
+# Etichetta alla finestra vuota per fare spazio (sono un programmatore scarso x2)
 label = tk.Label(window, text=" ")
 label.pack()
 
-# aggiungi un pulsante alla finestra
+# Pulsante alla finestra
 button = tk.Button(window, text="Clicca qui", command=execute)
 button.pack()
 
-# aggiungi un'etichetta alla finestra
+# Etichetta alla finestra vuota per fare spazio (sono un programmatore scarso x3)
 label = tk.Label(window, text=" ")
 label.pack()
 
-# avvia la finestra
+# Avvio la finestra
 window.mainloop()
