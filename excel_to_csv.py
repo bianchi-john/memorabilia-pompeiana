@@ -11,7 +11,7 @@ def datiAnagrafica(fileIn, fileOut):
                 'Soggetto Iconografico', 'Cronologia', 'Nazione', 'Città', 'Status', 'Museo / Collezionista', '# inv.', 'Data di Acquisizione', 'Modalità di Acquisizione']
 
         # Apri il file CSV in modalità scrittura
-        directory = "dataJohn"  # Specifico la directory
+        directory = "data"  # Specifico la directory
         filename = fileOut  # Specifico il nome del file
 
         if not os.path.exists(directory):  # Creo la directory se non esiste
@@ -67,7 +67,7 @@ def datiScavo(fileIn, fileOut):
         headers = ['ID','ID SCAVO','Toponimo','Regio','Insula','Civico','Stanza','Informazioni di Dettaglio','Indicazioni Generali','Giorno','Mese','Anno','Soprintendente','Architetto Direttore','Note','Archivio','Segnatura','Riferimento PAH','Citazione']
 
         # Apri il file CSV in modalità scrittura
-        directory = "dataJohn"  # Specifico la directory
+        directory = "data"  # Specifico la directory
         filename = fileOut  # Specifico il nome del file
 
         if not os.path.exists(directory):  # Creo la directory se non esiste
@@ -121,7 +121,7 @@ def datiCollezionistici(fileIn, fileOut):
         headers = ['ID','ID COLLEZIONISTA','Nazione','Città','Collezionista','Luogo','# inv.','da','a','Modalità di Acquisizione','Nazione 2','Città 2','Venditore','Nome','Note','Archivio','Segnatura','Documento']
 
         # Apri il file CSV in modalità scrittura
-        directory = "dataJohn"  # Specifico la directory
+        directory = "data"  # Specifico la directory
         filename = fileOut  # Specifico il nome del file
 
         if not os.path.exists(directory):  # Creo la directory se non esiste
@@ -178,7 +178,7 @@ def datiBibliografici(fileIn, fileOut):
         headers = ['ID','Bibliografia']
 
         # Apri il file CSV in modalità scrittura
-        directory = "dataJohn"  # Specifico la directory
+        directory = "data"  # Specifico la directory
         filename = fileOut  # Specifico il nome del file
 
         if not os.path.exists(directory):  # Creo la directory se non esiste
@@ -218,7 +218,9 @@ def datiBibliografici(fileIn, fileOut):
                     for i in range(len(cell_content)):
                         if cell_content[i] is None:
                             cell_content[i] = 'Missing Value'
-
+                    # Rimuovo dei caratteri che potrebbero generare errori
+                    cell_content[1] = cell_content[1].replace("[", "\[")
+                    cell_content[1] = cell_content[1].replace("]", "\]")
                     # Scrivo il contenuto
                     writer.writerow([cell_content[0], cell_content[1]])
     except: 
@@ -231,7 +233,7 @@ def abbreviazioniArchivi(fileIn, fileOut):
         headers = ['','Abbreviazione','Archivio','']
 
         # Apri il file CSV in modalità scrittura
-        directory = "dataJohn"  # Specifico la directory
+        directory = "data"  # Specifico la directory
         filename = fileOut  # Specifico il nome del file
 
         if not os.path.exists(directory):  # Creo la directory se non esiste
@@ -288,7 +290,7 @@ def abbreviazioniBibliografiche(fileIn, fileOut):
         headers = ['','Abbreviazione','Bibliografia','']
 
         # Apri il file CSV in modalità scrittura
-        directory = "dataJohn"  # Specifico la directory
+        directory = "data"  # Specifico la directory
         filename = fileOut  # Specifico il nome del file
 
         if not os.path.exists(directory):  # Creo la directory se non esiste
@@ -345,7 +347,7 @@ def abbreviazioniTipologiche(fileIn, fileOut):
         headers = ['','Abbreviazione','Tipo','']
 
         # Apri il file CSV in modalità scrittura
-        directory = "dataJohn"  # Specifico la directory
+        directory = "data"  # Specifico la directory
         filename = fileOut  # Specifico il nome del file
 
         if not os.path.exists(directory):  # Creo la directory se non esiste
