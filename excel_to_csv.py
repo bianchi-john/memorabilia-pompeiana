@@ -2,8 +2,11 @@
 import csv
 import openpyxl
 import os
-
-
+import tkinter as tk
+from tkinter import messagebox
+# importing tkinter module
+from tkinter import * 
+from tkinter.ttk import *
 
 
 def cleanArray(array_di_stringhe):
@@ -13,9 +16,6 @@ def cleanArray(array_di_stringhe):
         if "]" in str(array_di_stringhe[i]):
             array_di_stringhe[i] = array_di_stringhe[i].replace("]", "/]")
     return array_di_stringhe
-
-
-
 
 
 def datiAnagrafica(fileIn, fileOut):
@@ -72,7 +72,8 @@ def datiAnagrafica(fileIn, fileOut):
                     # Scrivo il contenuto
                     writer.writerow([cell_content[0], cell_content[2], cell_content[3], cell_content[4], cell_content[5], cell_content[6], cell_content[7], cell_content[8], cell_content[9], cell_content[10],
                                     cell_content[11], cell_content[12], cell_content[13], cell_content[14], cell_content[15], cell_content[16], cell_content[17], cell_content[18], cell_content[19], cell_content[20]])
-    except: 
+    except:
+        messagebox.showinfo('Errore','C\'è stato un errore duranta la creazione del file: \"' + fileOut + '\"')
         print('C\'è stato un errore duranta la creazione del file: \"' + fileOut + '\"')
 
 
@@ -129,7 +130,8 @@ def datiScavo(fileIn, fileOut):
                     # Scrivo il contenuto
                     writer.writerow([cell_content[0], float(cell_content[1]), cell_content[2], cell_content[3], cell_content[4], cell_content[5], cell_content[6], cell_content[7], cell_content[8], cell_content[9], cell_content[10],
                                 cell_content[11], cell_content[12], cell_content[13], cell_content[14], cell_content[15], cell_content[16], cell_content[17], cell_content[18]])
-    except: 
+    except:
+        messagebox.showinfo('Errore','C\'è stato un errore duranta la creazione del file: \"' + fileOut + '\"')
         print('C\'è stato un errore duranta la creazione del file: \"' + fileOut + '\"')
 
 
@@ -184,7 +186,8 @@ def datiCollezionistici(fileIn, fileOut):
                     # Scrivo il contenuto
                     writer.writerow([cell_content[0], float(cell_content[1]), cell_content[2], cell_content[3], cell_content[4], cell_content[5], cell_content[6], cell_content[7], cell_content[8], cell_content[9], cell_content[10],
                                 cell_content[11], cell_content[12], cell_content[13], cell_content[14], cell_content[15], cell_content[16], cell_content[17]])
-    except: 
+    except:
+        messagebox.showinfo('Errore','C\'è stato un errore duranta la creazione del file: \"' + fileOut + '\"')
         print('C\'è stato un errore duranta la creazione del file: \"' + fileOut + '\"')
 
 
@@ -242,7 +245,8 @@ def datiBibliografici(fileIn, fileOut):
                     cell_content = cleanArray(cell_content)
                     # Scrivo il contenuto
                     writer.writerow([cell_content[0], cell_content[1]])
-    except: 
+    except:
+        messagebox.showinfo('Errore','C\'è stato un errore duranta la creazione del file: \"' + fileOut + '\"')
         print('C\'è stato un errore duranta la creazione del file: \"' + fileOut + '\"')
 
 
@@ -301,7 +305,8 @@ def abbreviazioniArchivi(fileIn, fileOut):
                     # Scrivo il contenuto
                     writer.writerow([contatore, cell_content[0], cell_content[1], ''])
                     contatore += 1
-    except: 
+    except:
+        messagebox.showinfo('Errore','C\'è stato un errore duranta la creazione del file: \"' + fileOut + '\"')
         print('C\'è stato un errore duranta la creazione del file: \"' + fileOut + '\"')
 
 
@@ -360,7 +365,8 @@ def abbreviazioniBibliografiche(fileIn, fileOut):
                     # Scrivo il contenuto
                     writer.writerow([contatore, cell_content[0], cell_content[1], ''])
                     contatore += 1
-    except: 
+    except:
+        messagebox.showinfo('Errore','C\'è stato un errore duranta la creazione del file: \"' + fileOut + '\"')
         print('C\'è stato un errore duranta la creazione del file: \"' + fileOut + '\"')
 
 
@@ -420,16 +426,71 @@ def abbreviazioniTipologiche(fileIn, fileOut):
                     writer.writerow([contatore, cell_content[0], cell_content[1], ''])
                     contatore += 1
     except: 
+        messagebox.showinfo('Errore','C\'è stato un errore duranta la creazione del file: \"' + fileOut + '\"')
         print('C\'è stato un errore duranta la creazione del file: \"' + fileOut + '\"')
 
 
+def execute():
+    # Progress bar widget
+    progress = Progressbar(window, orient = HORIZONTAL, length = 100, mode = 'determinate')
+    progress.pack(pady = 0)
+    progress['value'] = 5
+    window.update_idletasks()
+    datiAnagrafica('excel.xlsx', 'dati_anagrafica_clean.csv')
+    progress['value'] = 10
+    window.update_idletasks()
+    datiScavo('excel.xlsx', 'dati_scavo_clean.csv')
+    progress['value'] = 20
+    window.update_idletasks()
+    datiCollezionistici('excel.xlsx', 'dati_collezionisti_clean.csv')
+    progress['value'] = 30
+    window.update_idletasks()
+    datiBibliografici('excel.xlsx', 'dati_bibliografici_clean.csv')
+    progress['value'] = 40
+    window.update_idletasks()
+    abbreviazioniArchivi('excel.xlsx', 'abbreviazioni_archivi.csv')
+    progress['value'] = 80
+    window.update_idletasks()
+    abbreviazioniBibliografiche('excel.xlsx', 'abbreviazioni_bibliografia.csv')
+    progress['value'] = 90
+    window.update_idletasks()
+    abbreviazioniTipologiche('excel.xlsx', 'abbreviazioni_tipologie.csv')
+    progress['value'] = 100
+    window.update_idletasks()
+    progress.destroy()
+    window.update_idletasks()
+    messagebox.showinfo("Completato", "Esportazione completata con successo.")
 
-datiAnagrafica('excel.xlsx', 'dati_anagrafica_clean.csv')
-datiScavo('excel.xlsx', 'dati_scavo_clean.csv')
-datiCollezionistici('excel.xlsx', 'dati_collezionisti_clean.csv')
-datiBibliografici('excel.xlsx', 'dati_bibliografici_clean.csv')
-abbreviazioniArchivi('excel.xlsx', 'abbreviazioni_archivi.csv')
-abbreviazioniBibliografiche('excel.xlsx', 'abbreviazioni_bibliografia.csv')
-abbreviazioniTipologiche('excel.xlsx', 'abbreviazioni_tipologie.csv')
 
-print ('DONE')
+
+# crea una nuova finestra
+window = tk.Tk()
+
+# aggiungi un titolo alla finestra
+window.title("Memorabilia Pompeiana")
+
+# imposta le dimensioni della finestra
+window.geometry("400x200")
+
+# aggiungi un'etichetta alla finestra
+label = tk.Label(window, text=" ")
+label.pack()
+
+# aggiungi un'etichetta alla finestra
+label = tk.Label(window, text="Esporta Excel in csv")
+label.pack()
+
+# aggiungi un'etichetta alla finestra
+label = tk.Label(window, text=" ")
+label.pack()
+
+# aggiungi un pulsante alla finestra
+button = tk.Button(window, text="Clicca qui", command=execute)
+button.pack()
+
+# aggiungi un'etichetta alla finestra
+label = tk.Label(window, text=" ")
+label.pack()
+
+# avvia la finestra
+window.mainloop()
