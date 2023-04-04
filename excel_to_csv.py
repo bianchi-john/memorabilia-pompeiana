@@ -456,7 +456,8 @@ def execute(excelFile):
     window.update_idletasks()
     progress.destroy()
     window.update_idletasks()
-    messagebox.showinfo("Completato", "Esportazione completata con successo.")
+    label = tk.Label(window, text="Esportazione completata")
+    label.pack()
 
 
 
@@ -492,6 +493,7 @@ label.pack()
 # Pulsante alla finestra
 button = tk.Button(window, text="Clicca qui", command=execute(window.filename))
 button.pack()
+button.destroy()
 
 # Etichetta alla finestra vuota per fare spazio (sono un programmatore scarso x3)
 label = tk.Label(window, text=" ")
