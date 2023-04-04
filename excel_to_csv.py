@@ -4,9 +4,9 @@ import openpyxl
 import os
 import tkinter as tk
 from tkinter import messagebox
-# importing tkinter module
 from tkinter import * 
 from tkinter.ttk import *
+from tkinter import filedialog
 
 
 def cleanArray(array_di_stringhe):
@@ -19,62 +19,62 @@ def cleanArray(array_di_stringhe):
 
 
 def datiAnagrafica(fileIn, fileOut):
-    try:
+    # try:
         # Definisci gli header per il tuo file CSV
-        headers = ['ID', 'Reperto', 'Materiale', 'Altezza', 'Lunghezza', 'Larghezza', 'Spessore', 'Diametro', 'Stato di Conservazione', 'Descrizione', 'Note',
-                'Soggetto Iconografico', 'Cronologia', 'Nazione', 'Città', 'Status', 'Museo / Collezionista', '# inv.', 'Data di Acquisizione', 'Modalità di Acquisizione']
+    headers = ['ID', 'Reperto', 'Materiale', 'Altezza', 'Lunghezza', 'Larghezza', 'Spessore', 'Diametro', 'Stato di Conservazione', 'Descrizione', 'Note',
+            'Soggetto Iconografico', 'Cronologia', 'Nazione', 'Città', 'Status', 'Museo / Collezionista', '# inv.', 'Data di Acquisizione', 'Modalità di Acquisizione']
 
-        # Apri il file CSV in modalità scrittura
-        directory = "data"  # Specifico la directory
-        filename = fileOut  # Specifico il nome del file
+    # Apri il file CSV in modalità scrittura
+    directory = "data"  # Specifico la directory
+    filename = fileOut  # Specifico il nome del file
 
-        if not os.path.exists(directory):  # Creo la directory se non esiste
-            os.makedirs(directory)
+    if not os.path.exists(directory):  # Creo la directory se non esiste
+        os.makedirs(directory)
 
-        filePathAndName = os.path.join(
-            directory, filename)  # Creo il full name path
+    filePathAndName = os.path.join(
+        directory, filename)  # Creo il full name path
 
-        with open(filePathAndName, 'w', newline='') as file:
-            # Creo un oggetto writer per scrivere nel file CSV
-            writer = csv.writer(file)
-            # Apro il file Excel
-            workbook = openpyxl.load_workbook(fileIn)
+    with open(filePathAndName, 'w', newline='', encoding="utf-8") as file:
+        # Creo un oggetto writer per scrivere nel file CSV
+        writer = csv.writer(file)
+        # Apro il file Excel
+        workbook = openpyxl.load_workbook(fileIn)
 
-            # Seleziono il foglio di lavoro che vuoi leggere
-            worksheet = workbook['Dati Anagrafici']
+        # Seleziono il foglio di lavoro che vuoi leggere
+        worksheet = workbook['Dati Anagrafici']
 
-            # Scrivo gli header nel file CSV
-            writer.writerow(headers)
+        # Scrivo gli header nel file CSV
+        writer.writerow(headers)
 
-            # Leggo i dati nell'excel ciclicamente e li salvo in un oggetto per poi metterli nel CSV
-            for row in worksheet.iter_rows(min_row=3, min_col=1, max_col=21):
+        # Leggo i dati nell'excel ciclicamente e li salvo in un oggetto per poi metterli nel CSV
+        for row in worksheet.iter_rows(min_row=3, min_col=1, max_col=21):
 
-                # Creo una lista vuota per contenere il contenuto delle celle
-                cell_content = []
+            # Creo una lista vuota per contenere il contenuto delle celle
+            cell_content = []
 
-                # Itero su ogni cella e aggiungi il contenuto alla lista
-                for cell in row:
-                    cell_content.append(cell.value)
+            # Itero su ogni cella e aggiungi il contenuto alla lista
+            for cell in row:
+                cell_content.append(cell.value)
 
-                # Stampo il contenuto
-                # print (cell_content)
+            # Stampo il contenuto
+            # print (cell_content)
 
-                # Se c'è qualche valore nella riga allora:
-                if (cell_content[0]):
-                    # Sostituisco il contenuto Null con la stringa 'Missing Value'
-                    for i in range(len(cell_content)):
-                        if cell_content[i] is None:
-                            cell_content[i] = 'Missing Value'
+            # Se c'è qualche valore nella riga allora:
+            if (cell_content[0]):
+                # Sostituisco il contenuto Null con la stringa 'Missing Value'
+                for i in range(len(cell_content)):
+                    if cell_content[i] is None:
+                        cell_content[i] = 'Missing Value'
 
-                    # Rimuovo eventuali caratteri che possono dare errori
-                    cell_content = cleanArray(cell_content)
+                # Rimuovo eventuali caratteri che possono dare errori
+                cell_content = cleanArray(cell_content)
 
-                    # Scrivo il contenuto
-                    writer.writerow([cell_content[0], cell_content[2], cell_content[3], cell_content[4], cell_content[5], cell_content[6], cell_content[7], cell_content[8], cell_content[9], cell_content[10],
-                                    cell_content[11], cell_content[12], cell_content[13], cell_content[14], cell_content[15], cell_content[16], cell_content[17], cell_content[18], cell_content[19], cell_content[20]])
-    except:
-        messagebox.showinfo('Errore','C\'è stato un errore duranta la creazione del file: \"' + fileOut + '\"')
-        print('C\'è stato un errore duranta la creazione del file: \"' + fileOut + '\"')
+                # Scrivo il contenuto
+                writer.writerow([cell_content[0], cell_content[2], cell_content[3], cell_content[4], cell_content[5], cell_content[6], cell_content[7], cell_content[8], cell_content[9], cell_content[10],
+                                cell_content[11], cell_content[12], cell_content[13], cell_content[14], cell_content[15], cell_content[16], cell_content[17], cell_content[18], cell_content[19], cell_content[20]])
+    # except:
+    #     messagebox.showinfo('Errore','C\'è stato un errore duranta la creazione del file: \"' + fileOut + '\"')
+    #     print('C\'è stato un errore duranta la creazione del file: \"' + fileOut + '\"')
 
 
 
@@ -94,7 +94,7 @@ def datiScavo(fileIn, fileOut):
         filePathAndName = os.path.join(
             directory, filename)  # Creo il full name path
 
-        with open(filePathAndName, 'w', newline='') as file:
+        with open(filePathAndName, 'w', newline='', encoding="utf-8") as file:
             # Creo un oggetto writer per scrivere nel file CSV
             writer = csv.writer(file)
             # Apro il file Excel
@@ -150,7 +150,7 @@ def datiCollezionistici(fileIn, fileOut):
         filePathAndName = os.path.join(
             directory, filename)  # Creo il full name path
 
-        with open(filePathAndName, 'w', newline='') as file:
+        with open(filePathAndName, 'w', newline='', encoding="utf-8") as file:
             # Creo un oggetto writer per scrivere nel file CSV
             writer = csv.writer(file)
             # Apro il file Excel
@@ -209,7 +209,7 @@ def datiBibliografici(fileIn, fileOut):
         filePathAndName = os.path.join(
             directory, filename)  # Creo il full name path
 
-        with open(filePathAndName, 'w', newline='') as file:
+        with open(filePathAndName, 'w', newline='', encoding="utf-8") as file:
             # Creo un oggetto writer per scrivere nel file CSV
             writer = csv.writer(file)
             # Apro il file Excel
@@ -265,7 +265,7 @@ def abbreviazioniArchivi(fileIn, fileOut):
         filePathAndName = os.path.join(
             directory, filename)  # Creo il full name path
 
-        with open(filePathAndName, 'w', newline='') as file:
+        with open(filePathAndName, 'w', newline='', encoding="utf-8") as file:
             # Creo un oggetto writer per scrivere nel file CSV
             writer = csv.writer(file)
             # Apro il file Excel
@@ -325,7 +325,7 @@ def abbreviazioniBibliografiche(fileIn, fileOut):
         filePathAndName = os.path.join(
             directory, filename)  # Creo il full name path
 
-        with open(filePathAndName, 'w', newline='') as file:
+        with open(filePathAndName, 'w', newline='', encoding="utf-8") as file:
             # Creo un oggetto writer per scrivere nel file CSV
             writer = csv.writer(file)
             # Apro il file Excel
@@ -385,7 +385,7 @@ def abbreviazioniTipologiche(fileIn, fileOut):
         filePathAndName = os.path.join(
             directory, filename)  # Creo il full name path
 
-        with open(filePathAndName, 'w', newline='') as file:
+        with open(filePathAndName, 'w', newline='', encoding="utf-8") as file:
             # Creo un oggetto writer per scrivere nel file CSV
             writer = csv.writer(file)
             # Apro il file Excel
@@ -427,31 +427,31 @@ def abbreviazioniTipologiche(fileIn, fileOut):
         print('C\'è stato un errore duranta la creazione del file: \"' + fileOut + '\"')
 
 
-def execute():
+def execute(excelFile):
     # Progress bar widget
     progress = Progressbar(window, orient = HORIZONTAL, length = 100, mode = 'determinate')
     progress.pack(pady = 0)
     progress['value'] = 5
     window.update_idletasks()
-    datiAnagrafica('excel.xlsx', 'dati_anagrafica_clean.csv')
+    datiAnagrafica(excelFile, 'dati_anagrafica_clean.csv')
     progress['value'] = 10
     window.update_idletasks()
-    datiScavo('excel.xlsx', 'dati_scavo_clean.csv')
+    datiScavo(excelFile, 'dati_scavo_clean.csv')
     progress['value'] = 20
     window.update_idletasks()
-    datiCollezionistici('excel.xlsx', 'dati_collezionisti_clean.csv')
+    datiCollezionistici(excelFile, 'dati_collezionisti_clean.csv')
     progress['value'] = 30
     window.update_idletasks()
-    datiBibliografici('excel.xlsx', 'dati_bibliografici_clean.csv')
+    datiBibliografici(excelFile, 'dati_bibliografici_clean.csv')
     progress['value'] = 40
     window.update_idletasks()
-    abbreviazioniArchivi('excel.xlsx', 'abbreviazioni_archivi.csv')
+    abbreviazioniArchivi(excelFile, 'abbreviazioni_archivi.csv')
     progress['value'] = 80
     window.update_idletasks()
-    abbreviazioniBibliografiche('excel.xlsx', 'abbreviazioni_bibliografia.csv')
+    abbreviazioniBibliografiche(excelFile, 'abbreviazioni_bibliografia.csv')
     progress['value'] = 90
     window.update_idletasks()
-    abbreviazioniTipologiche('excel.xlsx', 'abbreviazioni_tipologie.csv')
+    abbreviazioniTipologiche(excelFile, 'abbreviazioni_tipologie.csv')
     progress['value'] = 100
     window.update_idletasks()
     progress.destroy()
@@ -467,14 +467,21 @@ window = tk.Tk()
 window.title("Memorabilia Pompeiana")
 
 # Dimensioni della finestra
-window.geometry("400x200")
+window.geometry("600x200")
 
 # Etichetta alla finestra vuota per fare spazio (sono un programmatore scarso)
 label = tk.Label(window, text=" ")
 label.pack()
 
-# Etichetta alla finestra
-label = tk.Label(window, text="Esporta Excel in csv")
+# Import required libraries
+from tkinter import *
+from tkinter import filedialog
+
+# Create a dialog using filedialog function
+window.filename=filedialog.askopenfilename(initialdir="C:/", title="Select a file", filetypes=[("Excel files", ".xlsx"),("all files", "*.*")])
+
+# Create a label widget
+label=Label(window, text="The File is: " + window.filename, font='Arial 8 bold')
 label.pack()
 
 # Etichetta alla finestra vuota per fare spazio (sono un programmatore scarso x2)
@@ -482,7 +489,7 @@ label = tk.Label(window, text=" ")
 label.pack()
 
 # Pulsante alla finestra
-button = tk.Button(window, text="Clicca qui", command=execute)
+button = tk.Button(window, text="Clicca qui", command=execute(window.filename))
 button.pack()
 
 # Etichetta alla finestra vuota per fare spazio (sono un programmatore scarso x3)
