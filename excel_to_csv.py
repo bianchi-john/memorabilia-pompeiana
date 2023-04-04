@@ -456,7 +456,7 @@ def execute(excelFile):
     window.update_idletasks()
     progress.destroy()
     window.update_idletasks()
-    label = tk.Label(window, text="Esportazione completata")
+    label = tk.Label(window, text="Esportazione completata", fg='green', font=('Times', 24))
     label.pack()
 
 
@@ -480,10 +480,10 @@ from tkinter import *
 from tkinter import filedialog
 
 # Create a dialog using filedialog function
-window.filename=filedialog.askopenfilename(initialdir="C:/", title="Select a file", filetypes=[("Excel files", ".xlsx"),("all files", "*.*")])
+window.filename=filedialog.askopenfilename(initialdir=os.getcwd(), title="Select a file", filetypes=[("Excel files", ".xlsx"),("all files", "*.*")])
 
 # Create a label widget
-label=Label(window, text="The File is: " + window.filename, font='Arial 8 bold')
+label=Label(window, text="Il file selezionato è: \"" + window.filename + "\"", font=('Times', 12))
 label.pack()
 
 # Etichetta alla finestra vuota per fare spazio (sono un programmatore scarso x2)
