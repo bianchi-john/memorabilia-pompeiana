@@ -12,9 +12,9 @@ from tkinter import filedialog
 def cleanArray(array_di_stringhe):
     for i in range(len(array_di_stringhe)):
         if "[" in str(array_di_stringhe[i]):
-            array_di_stringhe[i] = array_di_stringhe[i].replace("[", "/[")
+            array_di_stringhe[i] = array_di_stringhe[i].replace("[", "\[")
         if "]" in str(array_di_stringhe[i]):
-            array_di_stringhe[i] = array_di_stringhe[i].replace("]", "/]")
+            array_di_stringhe[i] = array_di_stringhe[i].replace("]", "\]")
     return array_di_stringhe
 
 
@@ -469,7 +469,7 @@ window = tk.Tk()
 window.title("Memorabilia Pompeiana")
 
 # Dimensioni della finestra
-window.geometry("600x200")
+window.geometry("800x200")
 
 # Etichetta alla finestra vuota per fare spazio (sono un programmatore scarso)
 label = tk.Label(window, text=" ")
