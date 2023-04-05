@@ -431,33 +431,38 @@ def execute(excelFile):
     # Progress bar widget
     progress = Progressbar(window, orient = HORIZONTAL, length = 100, mode = 'determinate')
     progress.pack(pady = 0)
-    progress['value'] = 5
-    window.update_idletasks()
-    datiAnagrafica(excelFile, 'dati_anagrafica_clean.csv')
-    progress['value'] = 10
-    window.update_idletasks()
-    datiScavo(excelFile, 'dati_scavo_clean.csv')
-    progress['value'] = 20
-    window.update_idletasks()
-    datiCollezionistici(excelFile, 'dati_collezionisti_clean.csv')
-    progress['value'] = 30
-    window.update_idletasks()
-    datiBibliografici(excelFile, 'dati_bibliografici_clean.csv')
-    progress['value'] = 40
-    window.update_idletasks()
-    abbreviazioniArchivi(excelFile, 'abbreviazioni_archivi.csv')
-    progress['value'] = 80
-    window.update_idletasks()
-    abbreviazioniBibliografiche(excelFile, 'abbreviazioni_bibliografia.csv')
-    progress['value'] = 90
-    window.update_idletasks()
-    abbreviazioniTipologiche(excelFile, 'abbreviazioni_tipologie.csv')
-    progress['value'] = 100
-    window.update_idletasks()
-    progress.destroy()
-    window.update_idletasks()
-    label = tk.Label(window, text="Esportazione completata", fg='green', font=('Times', 24))
-    label.pack()
+    try:
+        progress['value'] = 5
+        window.update_idletasks()
+        datiAnagrafica(excelFile, 'dati_anagrafica_clean.csv')
+        progress['value'] = 10
+        window.update_idletasks()
+        datiScavo(excelFile, 'dati_scavo_clean.csv')
+        progress['value'] = 20
+        window.update_idletasks()
+        datiCollezionistici(excelFile, 'dati_collezionisti_clean.csv')
+        progress['value'] = 30
+        window.update_idletasks()
+        datiBibliografici(excelFile, 'dati_bibliografici_clean.csv')
+        progress['value'] = 40
+        window.update_idletasks()
+        abbreviazioniArchivi(excelFile, 'abbreviazioni_archivi.csv')
+        progress['value'] = 80
+        window.update_idletasks()
+        abbreviazioniBibliografiche(excelFile, 'abbreviazioni_bibliografia.csv')
+        progress['value'] = 90
+        window.update_idletasks()
+        abbreviazioniTipologiche(excelFile, 'abbreviazioni_tipologie.csv')
+        progress['value'] = 100
+        window.update_idletasks()
+        progress.destroy()
+        window.update_idletasks()
+        label = tk.Label(window, text="Esportazione completata", fg='green', font=('Times', 24))
+        label.pack()
+        sottotitolo = tk.Label(window, text="Riavvia il programma per una nuova operazione", fg='grey', font=('Times', 8))
+        sottotitolo.pack()
+    except: 
+        quit()
 
 
 
@@ -483,8 +488,12 @@ from tkinter import filedialog
 window.filename=filedialog.askopenfilename(initialdir=os.getcwd(), title="Select a file", filetypes=[("Excel files", ".xlsx"),("all files", "*.*")])
 
 # Create a label widget
-label=Label(window, text="Il file selezionato è: \"" + window.filename + "\"", font=('Times', 12))
-label.pack()
+try:
+    label=Label(window, text="Il file selezionato è: \"" + window.filename + "\"", font=('Times', 12))
+    label.pack()
+except:
+    quit()
+
 
 # Etichetta alla finestra vuota per fare spazio (sono un programmatore scarso x2)
 label = tk.Label(window, text=" ")
