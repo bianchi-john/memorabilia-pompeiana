@@ -67,7 +67,7 @@ def datiAnagrafica(fileIn, fileOut):
                         cell_content[i] = 'Missing Value'
 
                 # Rimuovo eventuali caratteri che possono dare errori
-                cell_content = cleanArray(cell_content)
+                # cell_content = cleanArray(cell_content)
 
                 # Scrivo il contenuto
                 writer.writerow([cell_content[0], cell_content[2], cell_content[3], cell_content[4], cell_content[5], cell_content[6], cell_content[7], cell_content[8], cell_content[9], cell_content[10],
@@ -125,8 +125,6 @@ def datiScavo(fileIn, fileOut):
                     for i in range(len(cell_content)):
                         if cell_content[i] is None:
                             cell_content[i] = 'Missing Value'
-                    # Rimuovo eventuali caratteri che possono dare errori
-                    cell_content = cleanArray(cell_content)
                     # Scrivo il contenuto
                     writer.writerow([cell_content[0], float(cell_content[1]), cell_content[2], cell_content[3], cell_content[4], cell_content[5], cell_content[6], cell_content[7], cell_content[8], cell_content[9], cell_content[10],
                                 cell_content[11], cell_content[12], cell_content[13], cell_content[14], cell_content[15], cell_content[16], cell_content[17], cell_content[18]])
@@ -182,7 +180,7 @@ def datiCollezionistici(fileIn, fileOut):
                         if cell_content[i] is None:
                             cell_content[i] = 'Missing Value'
                     # Rimuovo eventuali caratteri che possono dare errori
-                    cell_content = cleanArray(cell_content)
+                    # cell_content = cleanArray(cell_content)
                     # Scrivo il contenuto
                     writer.writerow([cell_content[0], float(cell_content[1]), cell_content[2], cell_content[3], cell_content[4], cell_content[5], cell_content[6], cell_content[7], cell_content[8], cell_content[9], cell_content[10],
                                 cell_content[11], cell_content[12], cell_content[13], cell_content[14], cell_content[15], cell_content[16], cell_content[17]])
@@ -301,7 +299,7 @@ def abbreviazioniArchivi(fileIn, fileOut):
                             cell_content[i] = 'Missing Value'
 
                     # Rimuovo eventuali caratteri che possono dare errori
-                    cell_content = cleanArray(cell_content)
+                    # cell_content = cleanArray(cell_content)
                     # Scrivo il contenuto
                     writer.writerow([contatore, cell_content[0], cell_content[1], ''])
                     contatore += 1
@@ -361,7 +359,7 @@ def abbreviazioniBibliografiche(fileIn, fileOut):
                             cell_content[i] = 'Missing Value'
 
                     # Rimuovo eventuali caratteri che possono dare errori
-                    cell_content = cleanArray(cell_content)
+                    # cell_content = cleanArray(cell_content)
                     # Scrivo il contenuto
                     writer.writerow([contatore, cell_content[0], cell_content[1], ''])
                     contatore += 1
@@ -418,7 +416,7 @@ def abbreviazioniTipologiche(fileIn, fileOut):
                             cell_content[i] = 'Missing Value'
 
                     # Rimuovo eventuali caratteri che possono dare errori
-                    cell_content = cleanArray(cell_content)
+                    # cell_content = cleanArray(cell_content)
                     # Scrivo il contenuto
                     writer.writerow([contatore, cell_content[0], cell_content[1], ''])
                     contatore += 1
