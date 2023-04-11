@@ -35,8 +35,13 @@ style_button = {
 }
 
 ricerca_anagrafica = ['ID','Reperto','Materiale','Cronologia','Nazione','Città','Museo/Collezionista','# inv.','Modalità di Acquisizione']
+ricerca_anagrafica = sorted(ricerca_anagrafica)
+
 ricerca_scavo = ['Toponimo', 'Regio', 'Anno', 'Soprintendente', 'Architetto Direttore']
+ricerca_scavo = sorted(ricerca_scavo)
+
 ricerca_collezione = ['Nazione', 'Città', 'Collezionista', 'Modalità di Acquisizione', 'Venditore', 'Nome', 'Nazione 2', 'Città 2']
+ricerca_collezione = sorted(ricerca_collezione)
 
 children_tabs = []
 
