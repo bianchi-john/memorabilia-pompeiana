@@ -51,6 +51,7 @@ children_tabs.append(dcc.Tab(id='tab3',label='Collezionisti',children=[html.Div(
 children_tabs.append(dcc.Tab(id='tab4',label='Bibliografia',children=[html.Div(id='output-biblio'),html.Div(id='output-biblio-2')],selected_style=style_button))
 
 app.layout = html.Div(children = [
+    html.Img(src='assets/DB Images/icons/imt.png', style={'width':'230px','float':'right','border': '2px solid #555'}),
     html.H1(children=[html.I('Memorabilia Pompeiana')], style={'font-family':'Futura','color':'#d21f1b'}),
     html.H3(children=['Antichità da Pompei nelle collezioni europee (1748-1830)'],style={'font-family':'Futura','color':'#d21f1b','margin-top':'-1.5%'}),
     html.P(children=['Autore: SILVIO LA PAGLIA - Web Designer: CHIARA PUGLIESE - Photo Editor: PASQUALE BUCCIERO'],style={'font-family':'Futura'}),
