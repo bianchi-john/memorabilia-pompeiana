@@ -28,6 +28,7 @@ bibliografia.set_index('ID',inplace=True)
 
 dropdown_style = {
     'display':'none'
+
 }
 
 style_button = {
@@ -40,7 +41,7 @@ ricerca_anagrafica = sorted(ricerca_anagrafica)
 ricerca_scavo = ['Toponimo', 'Regio', 'Anno', 'Soprintendente', 'Architetto Direttore']
 ricerca_scavo = sorted(ricerca_scavo)
 
-ricerca_collezione = ['Nazione', 'Città', 'Collezionista', 'Modalità di Acquisizione', 'Venditore', 'Nome', 'Nazione 2', 'Città 2']
+ricerca_collezione = ['Nazione', 'Città', 'Collezionista', 'Modalità di Acquisizione', 'Venditore']
 ricerca_collezione = sorted(ricerca_collezione)
 
 children_tabs = []
@@ -62,55 +63,55 @@ app.layout = html.Div(children = [
         html.Span(id='2',children='ID reperto: ',style={'display':'none'}),
         dcc.Dropdown(id='id_anagrafica', options=[{'label': i, 'value': i} for i in anagrafica.index if i!='Missing Value'],style=dropdown_style),
         html.Span(id='3',children='Reperto: ',style={'display':'none'}),
-        dcc.Dropdown(id='reperto_anagrafica', options=[{'label': i, 'value': i} for i in anagrafica.Reperto.unique() if i!='Missing Value'],style=dropdown_style),
+        dcc.Dropdown(id='reperto_anagrafica', options=[{'label': i, 'value': i} for i in sorted(anagrafica.Reperto.unique()) if i!='Missing Value'],style=dropdown_style),
         html.Span(id='4',children='Materiale: ',style={'display':'none'}),
-        dcc.Dropdown(id='materiale_anagrafica', options=[{'label': i, 'value': i} for i in anagrafica.Materiale.unique() if i!='Missing Value'],style=dropdown_style),
+        dcc.Dropdown(id='materiale_anagrafica', options=[{'label': i, 'value': i} for i in sorted(anagrafica.Materiale.unique()) if i!='Missing Value'],style=dropdown_style),
         html.Span(id='5',children='Cronologia: ',style={'display':'none'}),
-        dcc.Dropdown(id='cronologia_anagrafica', options=[{'label': i, 'value': i} for i in anagrafica.Cronologia.unique() if i!='Missing Value'],style=dropdown_style),
+        dcc.Dropdown(id='cronologia_anagrafica', options=[{'label': i, 'value': i} for i in sorted(anagrafica.Cronologia.unique()) if i!='Missing Value'],style=dropdown_style),
         html.Span(id='6',children='Nazione: ',style={'display':'none'}),
-        dcc.Dropdown(id='nazione_anagrafica', options=[{'label': i, 'value': i} for i in anagrafica.Nazione.unique() if i!='Missing Value'],style=dropdown_style),
+        dcc.Dropdown(id='nazione_anagrafica', options=[{'label': i, 'value': i} for i in sorted(anagrafica.Nazione.unique()) if i!='Missing Value'],style=dropdown_style),
         html.Span(id='7',children='Città: ',style={'display':'none'}),
-        dcc.Dropdown(id='citta_anagrafica', options=[{'label': i, 'value': i} for i in anagrafica.Città.unique() if i!='Missing Value'],style=dropdown_style),
+        dcc.Dropdown(id='citta_anagrafica', options=[{'label': i, 'value': i} for i in sorted(anagrafica.Città.unique()) if i!='Missing Value'],style=dropdown_style),
         html.Span(id='8',children='Museo/Collezionista: ',style={'display':'none'}),
-        dcc.Dropdown(id='museo_anagrafica', options=[{'label': i, 'value': i} for i in anagrafica['Museo / Collezionista'].unique() if i!='Missing Value'],style=dropdown_style),
+        dcc.Dropdown(id='museo_anagrafica', options=[{'label': i, 'value': i} for i in sorted(anagrafica['Museo / Collezionista'].unique()) if i!='Missing Value'],style=dropdown_style),
         html.Span(id='9',children='# inventario: ',style={'display':'none'}),
-        dcc.Dropdown(id='inv_anagrafica', options=[{'label': i, 'value': i} for i in anagrafica['# inv.'].unique() if i!='Missing Value'],style=dropdown_style),
+        dcc.Dropdown(id='inv_anagrafica', options=[{'label': i, 'value': i} for i in sorted(anagrafica['# inv.'].unique()) if i!='Missing Value'],style=dropdown_style),
         html.Span(id='10',children='Modalità di acquisizione: ',style={'display':'none'}),
-        dcc.Dropdown(id='acquis_anagrafica', options=[{'label': i, 'value': i} for i in anagrafica['Modalità di Acquisizione'].unique() if i!='Missing Value'],style=dropdown_style),
+        dcc.Dropdown(id='acquis_anagrafica', options=[{'label': i, 'value': i} for i in sorted(anagrafica['Modalità di Acquisizione'].unique()) if i!='Missing Value'],style=dropdown_style),
         html.Hr(style={'borderColor':'#d21f1b'}),
         html.H5('Ricerca per scavo:'),
         html.Span('Seleziona il campo di ricerca: '),
-        dcc.Dropdown(id='ricerca_scavo', options=[{'label': i, 'value': i} for i in ricerca_scavo]),
+        dcc.Dropdown(id='ricerca_scavo', options=[{'label': i, 'value': i} for i in sorted(ricerca_scavo)]),
         html.Span(id='11',children='Toponimo: ',style={'display':'none'}),
-        dcc.Dropdown(id='toponimo', options=[{'label': i, 'value': i} for i in scavo.Toponimo.unique() if i!='Missing Value'],style=dropdown_style),
+        dcc.Dropdown(id='toponimo', options=[{'label': i, 'value': i} for i in sorted(scavo.Toponimo.unique()) if i!='Missing Value'],style=dropdown_style),
         html.Span(id='12',children='Regio: ',style={'display':'none'}),
-        dcc.Dropdown(id='regio', options=[{'label': i, 'value': i} for i in scavo.Regio.unique() if i!='Missing Value'],style=dropdown_style),
+        dcc.Dropdown(id='regio', options=[{'label': i, 'value': i} for i in sorted(scavo.Regio.unique()) if i!='Missing Value'],style=dropdown_style),
         html.Span(id='13',children='Anno: ',style={'display':'none'}),
-        dcc.Dropdown(id='anno_scavo', options=[{'label': i, 'value': i} for i in scavo.Anno.unique() if i!='Missing Value'],style=dropdown_style),
+        dcc.Dropdown(id='anno_scavo', options=[{'label': i, 'value': i} for i in sorted(scavo.Anno.unique()) if i!='Missing Value'],style=dropdown_style),
         html.Span(id='14',children='Soprintendente: ',style={'display':'none'}),
-        dcc.Dropdown(id='soprintendente', options=[{'label': i, 'value': i} for i in scavo.Soprintendente.unique() if i!='Missing Value'],style=dropdown_style),
+        dcc.Dropdown(id='soprintendente', options=[{'label': i, 'value': i} for i in sorted(scavo.Soprintendente.unique()) if i!='Missing Value'],style=dropdown_style),
         html.Span(id='15',children='Architetto Direttore: ',style={'display':'none'}),
-        dcc.Dropdown(id='architetto', options=[{'label': i, 'value': i} for i in scavo['Architetto Direttore'].unique() if i!='Missing Value'],style=dropdown_style),
+        dcc.Dropdown(id='architetto', options=[{'label': i, 'value': i} for i in sorted(scavo['Architetto Direttore'].unique()) if i!='Missing Value'],style=dropdown_style),
         html.Hr(style={'borderColor':'#d21f1b'}),
         html.H5('Ricerca per collezione:'),
         html.Span('Seleziona il campo di ricerca: '),
-        dcc.Dropdown(id='ricerca_collezione', options=[{'label': i, 'value': i} for i in ricerca_collezione]),
+        dcc.Dropdown(id='ricerca_collezione', options=[{'label': i, 'value': i} for i in sorted(ricerca_collezione)]),
         html.Span(id='16',children='Nazione: ',style={'display':'none'}),
-        dcc.Dropdown(id='nazione_coll', options=[{'label': i, 'value': i} for i in collezionista.Nazione.unique() if i!='Missing Value'],style=dropdown_style),
+        dcc.Dropdown(id='nazione_coll', options=[{'label': i, 'value': i} for i in sorted(collezionista.Nazione.unique()) if i!='Missing Value'],style=dropdown_style),
         html.Span(id='17',children='Città: ',style={'display':'none'}),
-        dcc.Dropdown(id='citta_coll', options=[{'label': i, 'value': i} for i in collezionista.Città.unique() if i!='Missing Value'],style=dropdown_style),
+        dcc.Dropdown(id='citta_coll', options=[{'label': i, 'value': i} for i in sorted(collezionista.Città.unique()) if i!='Missing Value'],style=dropdown_style),
         html.Span(id='18',children='Collezionista: ',style={'display':'none'}),
-        dcc.Dropdown(id='collezionista', options=[{'label': i, 'value': i} for i in collezionista.Collezionista.unique() if i!='Missing Value'],style=dropdown_style),
+        dcc.Dropdown(id='collezionista', options=[{'label': i, 'value': i} for i in sorted(collezionista.Collezionista.unique()) if i!='Missing Value'],style=dropdown_style),
         html.Span(id='19',children='Modalità di Acquisizione: ',style={'display':'none'}),
-        dcc.Dropdown(id='acq_coll', options=[{'label': i, 'value': i} for i in collezionista['Modalità di Acquisizione'].unique() if i!='Missing Value'],style=dropdown_style),
+        dcc.Dropdown(id='acq_coll', options=[{'label': i, 'value': i} for i in sorted(collezionista['Modalità di Acquisizione'].unique()) if i!='Missing Value'],style=dropdown_style),
         html.Span(id='20',children='Venditore: ',style={'display':'none'}),
-        dcc.Dropdown(id='venditore_coll', options=[{'label': i, 'value': i} for i in collezionista.Venditore.unique() if i!='Missing Value'],style=dropdown_style),
+        dcc.Dropdown(id='venditore_coll', options=[{'label': i, 'value': i} for i in sorted(collezionista.Venditore.unique()) if i!='Missing Value'],style=dropdown_style),
         html.Span(id='21',children='Nome: ',style={'display':'none'}),
-        dcc.Dropdown(id='nome_coll', options=[{'label': i, 'value': i} for i in collezionista.Nome.unique() if i!='Missing Value'],style=dropdown_style),
+        dcc.Dropdown(id='nome_coll', options=[{'label': i, 'value': i} for i in sorted(collezionista.Nome.unique()) if i!='Missing Value'],style=dropdown_style),
         html.Span(id='22',children='Città 2: ',style={'display':'none'}),
-        dcc.Dropdown(id='citta2_coll', options=[{'label': i, 'value': i} for i in collezionista['Città 2'].unique() if i!='Missing Value'],style=dropdown_style),
+        dcc.Dropdown(id='citta2_coll', options=[{'label': i, 'value': i} for i in sorted(collezionista['Città 2'].unique()) if i!='Missing Value'],style=dropdown_style),
         html.Span(id='23',children='Nazione 2: ',style={'display':'none'}),
-        dcc.Dropdown(id='nazione2_coll', options=[{'label': i, 'value': i} for i in collezionista['Nazione 2'].unique() if i!='Missing Value'],style=dropdown_style),
+        dcc.Dropdown(id='nazione2_coll', options=[{'label': i, 'value': i} for i in sorted(collezionista['Nazione 2'].unique()) if i!='Missing Value'],style=dropdown_style),
         html.Hr(style={'borderColor':'#d21f1b'}),
         html.Br(),
     ],style={'width':'30%','float':'left'}),
@@ -147,6 +148,7 @@ app.layout = html.Div(children = [
     ],style={'display':'flex','width':'100%'}),
     html.Div(children=[html.P(children=['*Dati aggiornati al 31/12/2022'],style={'background-color':'#cdcdcd','margin':'2%','padding':'0.5%'})])
 ]) 
+
 
 @app.callback(
     Output(component_id='archivi', component_property='style'),
