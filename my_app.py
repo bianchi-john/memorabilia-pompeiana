@@ -41,7 +41,7 @@ ricerca_anagrafica = sorted(ricerca_anagrafica)
 ricerca_scavo = ['Toponimo', 'Regio', 'Anno', 'Soprintendente', 'Architetto Direttore']
 ricerca_scavo = sorted(ricerca_scavo)
 
-ricerca_collezione = ['Nazione', 'Città', 'Collezionista', 'Modalità di Acquisizione', 'Venditore']
+ricerca_collezione = ['Nazione', 'Città', 'Collezionista', 'Modalità di Acquisizione']
 ricerca_collezione = sorted(ricerca_collezione)
 
 children_tabs = []
