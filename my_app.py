@@ -318,7 +318,7 @@ def show_output(value_anag, value_scavo, value_collezione):
                 display, display, display, display,display, display, display, display,\
                 display, display, display, display,display, display, display, display
 
-    if current_state[0]['prop_id'] == 'ricerca_angrafica.value' and current_state[0]['value'] == 'Nazione':
+    if current_state[0]['prop_id'] == 'ricerca_anagrafica.value' and current_state[0]['value'] == 'Nazione':
         return display,display,display,display,{'display':'block'},display,display,display,display,\
                 display,display,display,display,{'display':'block'},display,display,display,display,\
                 display, display, display, display, display,\
@@ -326,7 +326,7 @@ def show_output(value_anag, value_scavo, value_collezione):
                 display, display, display, display,display, display, display, display,\
                 display, display, display, display,display, display, display, display
     
-    if current_state[0]['prop_id'] == 'ricerca_angrafica.value' and current_state[0]['value'] == 'Città':
+    if current_state[0]['prop_id'] == 'ricerca_anagrafica.value' and current_state[0]['value'] == 'Città':
         return display,display,display,display,display,{'display':'block'},display,display,display,\
                 display,display,display,display,display,{'display':'block'},display,display,display,\
                 display, display, display, display, display,\
